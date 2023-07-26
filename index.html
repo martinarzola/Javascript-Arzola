@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrega 2</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#contacto">Contáctanos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="pages/carrito.html">Carrito</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Productos
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Leche</a></li>
+              <li><a class="dropdown-item" href="#">Queso</a></li>
+              <li><a class="dropdown-item" href="#">Mantequilla</a></li>
+              <li><a class="dropdown-item" href="#">Dulce de leche</a></li>
+              <li><a class="dropdown-item" href="#">Yogur</a></li>
+            </ul>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <main>
+    <div class="productos-container" id="productos-disponibles">
+      <div class="producto milk">
+        <img src="images/leche-entera.png" alt="Imagen del producto" class="leche">
+        <h2>Leche entera</h2>
+        <p class="precio">$8</p>
+        <button class="btn-anadir-carrito">Añadir al carrito</button>
+      </div>
+      <div class="producto milk">
+        <img src="images/leche-semi.png" alt="Imagen del producto" class="leche">
+        <h2>Leche Semi-Descremada</h2>
+        <p class="precio">$10</p>
+        <button class="btn-anadir-carrito">Añadir al carrito</button>
+      </div>
+      <div class="producto milk">
+        <img src="images/leche-des.png" alt="Imagen del producto" class="leche">
+        <h2>Leche descremada</h2>
+        <p class="precio">$12</p>
+        <button class="btn-anadir-carrito">Añadir al carrito</button>
+      </div>
+      <div class="producto cheese">
+        <img src="images/queso-mant.png" alt="Imagen del producto" class="queso">
+        <h2>Queso mantecoso</h2>
+        <p class="precio">$12</p>
+        <button class="btn-anadir-carrito">Añadir al carrito</button>
+      </div>
+      <div class="producto cheese">
+        <img src="images/queso-gaud.png" alt="Imagen del producto" class="queso">
+        <h2>Queso gauda</h2>
+        <p class="precio">$14</p>
+        <button class="btn-anadir-carrito">Añadir al carrito</button>
+      </div>
+      <div class="producto cheese">
+        <img src="images/queso-mozz.png" alt="Imagen del producto" class="queso">
+        <h2>Queso mozzarella</h2>
+        <p class="precio">$15</p>
+        <button class="btn-anadir-carrito">Añadir al carrito</button>
+      </div>
+      <div class="producto butter">
+        <img src="images/mantequilla-sal.png" alt="Imagen del producto" class="mantequilla">
+        <h2>Mantequilla Con Sal</h2>
+        <p class="precio">$11</p>
+        <button class="btn-anadir-carrito">Añadir al carrito</button>
+      </div>
+      <div class="producto butter">
+        <img src="images/mantequilla-no-sal.png" alt="Imagen del producto" class="mantequilla">
+        <h2>Mantequilla Sin Sal</h2>
+        <p class="precio">$13</p>
+        <button class="btn-anadir-carrito">Añadir al carrito</button>
+      </div>
+      <div class="producto sweet">
+        <img src="images/dulce-de-leche.png" alt="Imagen del producto" class="manjar">
+        <h2>Dulce de leche</h2>
+        <p class="precio">$10</p>
+        <button class="btn-anadir-carrito">Añadir al carrito</button>
+      </div>
+      <div class="producto yoghurt">
+        <img src="images/yogurt-natural.png" alt="Imagen del producto" class="yogur">
+        <h2>Yogur</h2>
+        <p class="precio">$6</p>
+        <button class="btn-anadir-carrito">Añadir al carrito</button>
+      </div>
+    </div>
+  </main>
+
+
+  <footer id="contacto" class="bg-dark text-light py-4">
+    <div class="container">
+      <h3>Contacto</h3>
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" class="form-control" id="nombre">
+        </div>
+        <div class="form-group">
+          <label for="correo">Correo Electrónico:</label>
+          <input type="email" class="form-control" id="correo">
+        </div>
+        <div class="form-group">
+          <label for="mensaje">Mensaje:</label>
+          <textarea class="form-control" id="mensaje" rows="3"></textarea>
+        </div>
+        <button type="button" class="btn btn-primary" id="enviarBtn">Enviar</button>
+      </form>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
