@@ -1,65 +1,135 @@
-// Productos y precios
 const productos = [
-  {nombre: 'Leche entera', precio: 8},
-  {nombre: 'Leche descremada', precio: 9},
-  {nombre: 'Queso mantecoso', precio: 12},
-  {nombre: 'Queso gauda', precio: 14},
-  {nombre: 'Queso mozzarella', precio: 15},
-  {nombre: 'Mantequilla', precio: 12},
-  {nombre: 'Dulce de leche', precio: 10},
-  {nombre: 'Yogur', precio: 6},
-]
+  {
+    id: 1,
+    nombre: "Leche entera",
+    precio: 8,
+    cantidad: 0,
+  },
+  {
+    id: 2,
+    nombre: "Leche Semi-Descremada",
+    precio: 10,
+    cantidad: 0,
+  },
+  {
+    id: 3,
+    nombre: "Leche descremada",
+    precio: 12,
+    cantidad: 0,
+  },
+  {
+    id: 4,
+    nombre: "Queso mantecoso",
+    precio: 12,
+    cantidad: 0,
+  },
+  {
+    id: 5,
+    nombre: "Queso gauda",
+    precio: 14,
+    cantidad: 0,
+  },
+  {
+    id: 6,
+    nombre: "Queso mozzarella",
+    precio: 15,
+    cantidad: 0,
+  },
+  {
+    id: 7,
+    nombre: "Mantequilla Con Sal",
+    precio: 11,
+    cantidad: 0,
+  },
+  {
+    id: 8,
+    nombre: "Mantequilla Sin Sal",
+    precio: 13,
+    cantidad: 0,
+  },
+  {
+    id: 9,
+    nombre: "Dulce de leche",
+    precio: 10,
+    cantidad: 0,
+  },
+  {
+    id: 10,
+    nombre: "Yogur",
+    precio: 6,
+    cantidad: 0,
+  },
+];
 
-// Buscar productos
-function buscarProducto(nombreProducto) {
-  return productos.find(producto => producto.nombre === nombreProducto)
+// Función para añadir un producto al carrito y almacenarlo en localStorage
+function agregarAlCarrito(id) {
+  const producto = productos.find((prod) => prod.id === id);
+  producto.cantidad++;
+  actualizarCarrito();
+  guardarEnLocalStorage();
 }
 
-// Función para calcular el costo total de una compra
-function calcularCostoTotal() {
-  let costoTotal = 0;
-  let productosSeleccionados = [];
+// Función para guardar el contenido del carrito en localStorage
+function guardarEnLocalStorage() {
+  localStorage.setItem("carrito", JSON.stringify(productos));
+}
 
-// Mostrarle al usuario los productos disponibles
-  console.log('Productos disponibles:');
-  productos.forEach(producto => {
-  console.log(`${producto.nombre}: $${producto.precio}`);
-});
-
-// Solicitarle al usuario los productos y sus cantidades
-  let seleccion = true;
-  while (seleccion) {
-    let nombreProducto = prompt('Ingresa el nombre de un producto (o "esc" para terminar):');
-    if (nombreProducto.toLowerCase() === 'esc') {
-      seleccion = false;
-    } else {
-      const producto = buscarProducto(nombreProducto);
-      if (producto) {
-        const cantidadProducto = parseInt(prompt(`Ingresa la cantidad de ${nombreProducto} que deseas comprar:`));
-        if (!isNaN(cantidadProducto) && cantidadProducto > 0) {
-          const costoProducto = producto.precio * cantidadProducto;
-          costoTotal += costoProducto;
-          productosSeleccionados.push({nombre: nombreProducto, cantidad: cantidadProducto, costo: costoProducto});
-          console.log(`Elegiste ${cantidadProducto} unidad(es) del producto ${nombreProducto}`)
-        } else {
-          console.log('Cantidad no válida. Por favor, elige otra.');
-        } 
-      } else {
-        console.log('Producto no válido. Por favor, elige otro.');
-      }      
+// Función para cargar el contenido del carrito desde localStorage
+function cargarDesdeLocalStorage() {
+  const carritoGuardado = localStorage.getItem("carrito");
+  if (carritoGuardado) {
+    const productosGuardados = JSON.parse(carritoGuardado);
+    for (const producto of productosGuardados) {
+      const productoActual = productos.find((prod) => prod.id === producto.id);
+      if (productoActual) {
+        productoActual.cantidad = producto.cantidad;
+      }
     }
   }
-
-// Reflejarle al usuario los productos que seleccionó + el costo total con y sin iva
-  console.log('Productos seleccionados: ', productosSeleccionados)
-
-  console.log(`Costo total: $${costoTotal}`)
-  const costoTotalConIva = costoTotal * 1.21 // Suponiendo un 21% de IVA
-  const costoTotalConIvaReal = costoTotalConIva.toFixed(2)
-  console.log(`Costo total con IVA: $${costoTotalConIvaReal}`)
-  alert(`El costo total (sin IVA) es de $${costoTotal}. El costo total con IVA incluido es de $${costoTotalConIvaReal}`)
 }
 
-calcularCostoTotal();
+// Función para actualizar el contenido del carrito.html
+function actualizarCarrito() {
+  const carritoDiv = document.getElementById("carrito-contenido");
+  carritoDiv.innerHTML = "";
 
+  productos.forEach((producto) => {
+    if (producto.cantidad > 0) {
+      const productoDiv = document.createElement("div");
+      productoDiv.classList.add("producto-carrito");
 
+      const imagen = document.createElement("img");
+      imagen.src = producto.imagen;
+      imagen.alt = producto.nombre;
+      productoDiv.appendChild(imagen);
+
+      const nombre = document.createElement("h2");
+      nombre.textContent = producto.nombre;
+      productoDiv.appendChild(nombre);
+
+      const precio = document.createElement("p");
+      precio.textContent = `$${producto.precio}`;
+      productoDiv.appendChild(precio);
+
+      const cantidad = document.createElement("p");
+      cantidad.textContent = `Cantidad: ${producto.cantidad}`;
+      productoDiv.appendChild(cantidad);
+
+      carritoDiv.appendChild(productoDiv);
+    }
+  });
+}
+
+// Cargamos el contenido del carrito desde localStorage al cargar la página
+window.addEventListener("load", () => {
+  cargarDesdeLocalStorage();
+  actualizarCarrito();
+});
+
+// Asignamos el evento de clic a los botones "Añadir al carrito"
+const botonesAgregar = document.querySelectorAll(".btn-anadir-carrito");
+botonesAgregar.forEach((boton, index) => {
+  boton.addEventListener("click", () => {
+    agregarAlCarrito(index + 1);
+  });
+});
