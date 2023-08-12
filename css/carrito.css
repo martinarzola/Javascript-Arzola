@@ -1,0 +1,47 @@
+.carrito-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    background-color: antiquewhite;
+  }
+  
+  .product {
+    border: 5px solid #ccc;
+    padding: 10px;
+  }
+  
+  .column {
+    padding: 5px;
+    text-align: center;
+  }
+  
+  .column-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .product-image {
+    max-width: 150px;
+    max-height: 150px;
+  }
+  
+  .product-name {
+    font-weight: bold;
+  }
+  
+  .btn-sumar,
+  .btn-restar {
+    margin: 0 5px;
+    cursor: pointer;
+  }
+
+#subtotal {
+  background-color: aliceblue;
+  padding: 15px;
+  display: flex;
+}
+
+#btn-vaciar{
+  margin-left: auto;
+}
